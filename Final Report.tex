@@ -1,0 +1,848 @@
+%\documentclass[runningheads]{llncs}
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{plain}
+\setcounter{tocdepth}{3}
+\usepackage{color}
+\usepackage{mdframed}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+%\usepackage{algorithmic,algorithm}
+\usepackage{textcomp,booktabs}
+\usepackage{graphicx,booktabs,multirow}
+\usepackage{booktabs}
+\newsavebox{\tablebox}
+\usepackage{times}
+\usepackage{titling}
+
+\usepackage{ulem}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+
+
+
+\topmargin -0.5cm \oddsidemargin 0cm \evensidemargin 0cm \textheight
+23cm \textwidth 16cm
+
+
+
+
+\renewcommand{\baselinestretch}{1.0}
+ 
+\newcommand{\tb}{\textcolor{blue}}
+\newcommand{\tr}{\textcolor{red}}
+
+%-------------------------------------------------------------------------
+\begin{document}
+
+
+
+\title{
+	\rule{\textwidth}{1pt} \\  % Horizontal line above the title
+	\vspace{0.4cm}
+	Privacy-Preserving Online Ebook Sale Platform \\
+	\vspace{0.4cm}
+	\rule{\textwidth}{1pt}     % Horizontal line below the title
+}
+
+\author{
+	\textbf{Ashutosh Ramesh Bhosale (Student Number: 7795786)} \\[0.2cm]
+	\textbf{Kartikay Sharma (Student Number: 7875484)} \\[0.2cm]
+	\textbf{Kyaw Soe (Student Number: 7704495)} \\[0.2cm]
+	\textbf{Tushar Bohara (Student Number: 7651776)} \\[0.2cm]
+	\textbf{Sandhya Basnet (Student Number: 7642064)} \\
+}
+
+\date{\today}  % Optional: Add the date, use \today for the current date
+
+
+	\maketitle
+	
+	\vfill
+	\begin{center}
+		\Large \textbf{Subject Coordinator: Lei Wang} \\[0.2cm]
+		\Large \textbf{Supervisor: Rupeng Wang} \\[0.2cm]
+		\Large \textbf{University Of Wollongong}  % Optionally add the institution name
+	\end{center}
+
+
+
+
+
+
+\pagebreak
+\abstract{	The idea that the Privacy-Preserving Online E-Book Sale Platform is aimed at solving the problem of the lack of user privacy in the process of buying e-books. Since digital platforms have become more integrated into our everyday existence, they pose a massive threat to personal privacy, by using and abusing people’s personal information for purposes such as marketing and advertising respectively. This project aims at developing an application where people can buy and read eBooks without the need to have third parties know what type of material they buy, their data, or their purchase histories.
+ \\\\	Using encryption methods, including zero-knowledge proof and secure multiparty computation, the platform ensures that the data of a transaction and identity of the book remain protected during the purchasing process. Unlike the traditional e-book platforms that collect a vast amount of data about the users, the information which may later be leaked or exploited for monetary benefits, this solution ensures anonymity of the users’ reading habits, and it will be impossible for any unauthorized party to exploit users’ data for unintended purposes. \\\\	Besides, the security of the platform to purchase e-books, there are no controversies of relevant targeted advertising are used. This puts our privacy-preserving Online eBook Sale Platform in a position where users can view diverse content with no possibility of their interests being revealed to the platform. Besides, due to personal preferences are concealed, people can choose from a wide range of selections of books without any prejudice and bias when becoming a member of the community. The platform allows safe, convenient, and fast realization of the exchange of e-books while ensuring compliance with privacy and security standards. 
+	    
+	     
+	     
+	     
+	 
+}
+\pagebreak
+\tableofcontents
+\pagebreak
+\listoffigures
+\newpage
+
+\section{\tb{Introduction}}
+
+\subsection{Conceptual Background}
+The rapid evolution of online platforms has refined how individuals interact with the world around them. Looking at systems such as education, business and retail have drastically changed with the use of online platforms, it seems like we are more dependent on this online system. These systems have simplified and streamlined various tasks, reducing the need for number of traditional ways on how humans conduct their day-to-day life.~\cite{harman2018}\\\\
+Among these, eBook sale platforms have experienced considerable growth in recent years. As there is more use of mobile devices, smartphones and tablets, people can access online books anywhere and anytime they want. These platforms enable users to access vast libraries of content, significantly reducing the dependence on physical books and traditional bookstores.~\cite{urbanwriters2022}\\
+
+For authors, eBook platforms offer a means to reach broader, more diverse audiences, bypassing traditional publishing channels that often impose barriers. Publishers, similarly, benefit from the reduced logistics of distributing physical books, as 
+digital books can be delivered instantly across the globe with minimal cost. As a
+ result, eBook platforms have made reading more accessible, cost-effective, and convenient for millions of users worldwide.
+~\cite{urbanwriters2022}\\\\
+However, this increasing reliance on digital platforms has also brought to light critical issues surrounding user privacy. With vast amounts of personal data being collected—ranging from reading habits and purchase histories to personal and payment information—concerns about data breaches, unauthorized access, and unethical data usage have surfaced. This project was motivated by the need to address these privacy concerns and create a platform that prioritizes the protection of users’ sensitive information while maintaining a seamless reading experience.
+
+
+
+
+
+
+\subsection{Problem Statements}
+While eBook platforms offer significant advantages in terms of accessibility and convenience, they also raise various problem related to security issue and privacy concerns. We can see lot of similar eBook platform such as ProQuest, Google Scholar, JSTOR, Library Genesis, ScienceDirect and so on which are currently being used by some many people for personal and professional use. These platforms collect extensive personal data which might include detailed information about users’ reading preferences, search history, and transactions details. This data is often stored and analysed without explicit user consent, leading to privacy violations such as targeted advertising or data sharing with third parties. Unauthorized access to such sensitive information through data breaches or insider threats can result in significant harm to users, undermining trust in these platforms.~\cite{Springer2023}\\\\
+
+Moreover, the growing use of data mining and machine learning algorithms to analyse user behaviour and generate marketing insights presents additional challenges. These algorithms often process user data in ways that are opaque and difficult to understand, further increasing the potential for misuse. As a result, users may feel hesitant to engage fully with these platforms, especially when their personal data is being used for purposes they did not agree to, such as personalized advertising or recommendation systems.\\\\
+
+The problem this project seeks to address is the lack of a privacy-focused eBook platform that prioritizes user confidentiality. Current platforms fail to provide adequate protection of user data, and there is a growing demand for a solution that allows individuals to enjoy the convenience of eBook shopping without compromising their privacy.
+~\cite{Pew2023}
+\subsection{Objectives}
+The primary goal of this project is to design and implement a privacy-preserving eBook sale platform that addresses the existing shortcomings of current solutions and ensures users' personal data is protected. The following objectives outline the key goals of the project:
+
+\begin{itemize}
+	\item \textbf{Ensuring user privacy:}	 The platform is designed to protect the confidentiality of users' reading habits, personal information, and purchase data, ensuring that no unauthorized parties can access or misuse this information. This is being achieved using advanced cryptographic techniques, such as zero-knowledge proofs and secure multiparty computation, to ensure privacy is maintained throughout the transaction process.
+	\item \textbf{	Eliminating targeted advertising: }Unlike most commercial platforms, which use personal data to deliver targeted advertising, this eBook platform will actively avoid using user data for marketing purposes. The platform will not engage in any form of data-driven advertising, thereby offering users a browsing experience free from intrusive and unwanted advertisements.
+	\item \textbf{	Encouraging diverse reading choices: }Privacy concerns often inhibit users from exploring certain genres or sensitive subjects. By guaranteeing anonymity and data protection, the platform will encourage users to freely explore diverse reading materials without fear of judgment or exposure. This will promote a richer and more inclusive reading culture.
+	\item \textbf{	Enhancing user experience:}While privacy is the core focus, the platform will also provide a user-friendly interface with advanced features such as personalized book recommendations, efficient search functionality, and seamless navigation. The goal is to offer both privacy and a superior user experience, ensuring that users do not have to compromise on usability for the sake of privacy.
+\end{itemize}
+
+\subsection{Scope}
+This project focuses on the development of a web-based eBook sale platform designed with privacy as its core principle. The platform will allow users to browse, purchase, and download eBooks while ensuring that their personal information and reading preferences are protected. The scope of the project includes:
+\begin{itemize}
+	\item \textbf{	Development of privacy-preserving mechanisms: }The platform will implement cryptographic methods such as secure multiparty computation and zero-knowledge proofs to safeguard user data. This will ensure that sensitive information, such as reading preferences, remains confidential and inaccessible to unauthorized parties.
+	\item \textbf{	Basic platform functionality:}Users will be able to search for eBooks, add them to a virtual cart, make purchases, and download their chosen books for offline reading. In addition, the platform will support features such as account creation, wish lists, and the ability to track reading progress.
+	\item \textbf{Compliance with privacy laws: }The platform will adhere to privacy laws and regulations ensuring that users' rights are protected at all times.
+	\item \textbf{	No advertising or data sharing: }Unlike traditional platforms, the developed platform will not engage in targeted advertising or share user data with third parties. Users can rest assured that their data will not be exploited for commercial gain.
+	
+
+\end{itemize}
+
+\subsection{Limitations}
+This project focuses on the development of a web-based eBook sale platform designed with privacy as its core principle. The platform will allow users to browse, purchase, and download eBooks while ensuring that their personal information and reading preferences are protected. The scope of the project includes:
+While the platform addresses the core issue of privacy preservation, there are several limitations that must be acknowledged:
+\begin{itemize}
+	\item \textbf{	Performance trade-offs: }Implementing advanced cryptographic techniques such as zero-knowledge proofs can introduce computational overhead, potentially affecting the platform’s performance. This may result in slower response times during certain operations, such as processing transactions.
+	\item \textbf{	Data storage requirements: }Although sensitive data such as reading preferences will be encrypted or anonymized, some user data, such as account information, must be stored to facilitate platform functionality. The platform will, however, minimize the amount of personally identifiable information stored and ensure that all data is securely encrypted.
+	\item \textbf{	Platform scalability: }The initial scope of this project is limited to eBook sales. While the platform may be expanded in the future to include additional digital content such as audiobooks or other media, the current focus remains on eBooks.
+	\item \textbf{	Adoption challenges: }As with any new platform, gaining user trust and adoption can be challenging. Users must be educated about the importance of privacy in the digital space and be willing to transition from existing platforms to one that prioritizes their privacy.
+	
+	
+\end{itemize}
+\pagebreak
+\section{Related Work}
+\subsection{Literature Review }
+This section highlights the new findings and developments performed in the literature of privacy preservation and approaches that concern e-book sale over the internet. In this paper, we propose synthesizing data from current literature to pinpoint opportunities and potential in improving the privacy of electronic transactions, or e-commerce, with an emphasis on e-books. \\
+
+Current developments concerning e-commerce concentration on privacy preservation in the protocols used especially with respect to users. For instance, Hawkins published the seminal work on interactive proofs of knowledge by Bellare and Goldreich necessary for designing cryptographic protocols for protecting the privacy of customers during online purchases. This piece of work underpins the structure of our platform for financial transactions since it is made possible without compromising the users’ data.\\
+
+Privacy-preserving protocols are essential in the domain of online sales platforms, particularly for maintaining user data protection while ensuring transactional integrity. The development of these protocols has been influenced by various approaches in big data analytics, social media data publishing, and privacy-preserving computational techniques. This section reviews key contributions in these areas, providing a comprehensive understanding of the evolution and current state of privacy-preserving online sales platforms.\\
+
+Foundational Work: The foundational work by Bellare and Goldreich ~\cite{Bellare1992} provided the basis for developing efficient cryptographic protocols by introducing the concept of proofs of knowledge. These proofs allow one party to convince another that they know a value without revealing the value itself. Bellare and Rogaway ~\cite{Bellare1993} expanded on this with the random oracle model, a theoretical framework that has significantly influenced the design of efficient cryptographic schemes. \\
+
+“Advancements in Zero-Knowledge Proofs” Zero-knowledge proofs (ZKPs) have been instrumental in enhancing privacy in online transactions. Bangerter et al.~\cite{Bangerter2009} and Almeida et al. ~\cite{Almeida2010} focused on the automatic generation of sigma-protocols, a specific type of ZKP that allows one party to prove knowledge of a value (such as a password) without revealing the value itself. These protocols are essential for secure e-commerce platforms as they ensure the confidentiality of sensitive information during transactions.ZKPs have been applied to various aspects of e-commerce, including identity verification, transaction validation, and access control. By enabling secure and private interactions, ZKPs help build trust between users and online platforms, which is crucial for the widespread adoption of e-commerce solutions.\\
+
+“Privacy-Preserving Data Publishing” Yang et al. ~\cite{Yang2018} addressed the challenge of privacy-preserving data publishing for personalized recommendation systems. Their approach ensures user privacy while maintaining data utility by anonymizing and encrypting data. This method is relevant for e-commerce platforms that aim to recommend products without compromising user privacy. Techniques such as differential privacy and homomorphic encryption are often used to achieve a balance between data utility and privacy.\\
+
+“Big Data Analytics in Marketing” Ducange et al. ~\cite{Ducange2018} explored the application of big data analytics within marketing strategies to gain insights into consumer behavior while protecting personal data. Their methodologies, which involve analyzing large datasets to extract meaningful patterns, can be adapted to online sales platforms to enhance marketing efforts without compromising user privacy. By using anonymized data, these platforms can create targeted marketing campaigns that do not expose individual user details.Big data analytics can provide valuable insights into consumer preferences and trends, allowing e-commerce platforms to tailor their offerings and marketing strategies. However, it is crucial to implement robust privacy measures to prevent unauthorized access and misuse of personal data.\\
+
+“Anonymous Credentials and Access Control” The use of anonymous credentials in access control has been extensively studied. Belenkiy et al. ~\cite{Belenkiy2008} proposed p-signatures and noninteractive anonymous credentials, which enable users to authenticate themselves without revealing their identity. This technique is crucial for privacy-preserving e-commerce platforms, where user anonymity is paramount. Anonymous credentials allow users to prove their authorization to access certain resources without disclosing their identity, thus maintaining privacy. Access control systems that use anonymous credentials can protect user privacy by ensuring that only authorized users can access sensitive information or services. This approach helps build trust and encourages users to engage with e-commerce platforms.\\
+
+“Efficient Protocols for Privacy” The work of Camenisch and Lysyanskaya ~\cite{Camenisch2002} introduced efficient protocols for signature schemes, which are essential for secure transactions. These protocols ensure that even with limited computational resources, privacy can be maintained. Efficient cryptographic protocols are vital for practical implementations of privacy-preserving e-commerce platforms, where performance and resource constraints are critical considerations.Efficient protocols are necessary to ensure that privacy-preserving measures do not introduce significant delays or computational overhead, which could negatively impact the user experience and the scalability of the platform.\\
+
+“Practical Implementations” Alsaid and Martin~\cite{Alsaid2002} demonstrated the practical implications of privacy advocacy through the Bugnosis tool, which detects web bugs and educates users about privacy threats. Such tools are important for increasing user awareness and trust in privacy-preserving e-commerce platforms. By making users more aware of potential privacy risks, these tools help build confidence in the security measures implemented by e-commerce platforms.User education and awareness are critical components of effective privacy-preserving solutions. Tools like Bugnosis can help users understand the importance of privacy and how to protect their personal information while using online services.\\
+
+
+
+“Challenges and Future Directions” Despite significant advancements, challenges remain in efficiently implementing privacy-preserving protocols. The work by Chaum and Pedersen ~\cite{Chaum1992}on wallet databases with observers highlights the difficulties in maintaining privacy while allowing observer access. Future research must address these challenges to create more efficient and user-friendly privacy-preserving e-commerce systems. This involves developing new techniques to handle complex access control policies and ensuring that privacy-preserving protocols are scalable and easy to use.Emerging technologies such as blockchain and secure multi-party computation (SMPC) offer promising solutions for addressing these challenges. Continued research and innovation are needed to develop practical implementations that can meet the growing demand for privacy-preserving e-commerce platforms.\\
+
+\textbf{Privacy-Preserving E-Commerce Protocols}
+As the application of the concept of e-commerce over the internet increased several issues have come to the limelight such as privacy where users’ data is involved. In constructing cryptographic protocols needed to preserve user’s anonymity in the transactions, Bellare and Goldreich’s seminal work on proofs of knowledge is an important starting point. They have investigated on how cryptographic techniques could be employed to enhance the effectiveness of ensuring that users are able to confirm the issued transactions without having to divulge unnecessary information which violates the principal of our proposed platform.~\cite{Bellare2007}\\
+
+\textbf{Zero-Knowledge Proofs in E-Commerce}
+Zero-Knowledge Proofs (ZKPs) play a significant role in seamless implementation of privacy-preserving solutions in carrying out of online transactions. New papers by Bangerter and others investigate the development of sigma -protocols which facilitate secure transactions by letting one party give proof he or she has specific knowledge without disclosing the knowledge. This method can be incorporated into our platform to allow users to enter authenticated values which recognize their rights to certain resources without exposing identifiable information.~\cite{Bangerter2010}\\
+
+\textbf{Homomorphic Encryption for Privacy Preservation}
+Homomorphic encryption empowers computations on encrypted data without delicacy of the original encrypted data and hence SEP algorithms employ this tool. The fact that operations can be performed on encrypted data was quite beneficial in that our platform can perform transactions without revealing the details of the transactions. For example, Boneh et al. have described several use cases of homomorphic encryption, suggesting its ability to enable secure calculations on collected data without causing data leakage. Its application on our platform will act as a shield to preferences and transactions from unauthorized access.~\cite{Boneh2005}
+\\\\
+
+\textbf{Privacy Concerns with Data Mining and User Behavior}\\
+The application of data mining techniques and machine learning in e-business comes with many privacy threats. This is something that we mentioned in the introduction of our project: current e-book applications might monitor the users’ actions to develop profitable advertising approaches and misuse this freedom. For instance, some studies show that threats such as data breaches or insider threats can simply compromise the user’s trust. We do not attempt to acquire and/ or utilize the data of the users for marketing our product, hence, our platform aims at eradicating such practices.~\cite{Yang2019}
+\\
+
+\textbf{Computer Vision and Machine Learning in Privacy Preservation}
+Some papers have investigated the performance improvement of privacy using computer vision and machine learning in the context of e-commerce. For instance, research done in computer vision-based biosensors clearly showed how use of visual data for observing and evaluating the user interactions is possible without compromising personal data. It might be applied to improve the interaction with users on our platform while preserving the anonymity of the latter.~\cite{Chaum2007}\\
+
+\subsection{How the Project is Innovative}
+
+The Privacy-Preserving Online E-Book Sale Platform introduces a unique approach to addressing existing challenges in online e-book sales by employing advanced cryptographic techniques and user-centered design.\\
+
+\textbf{Non-Invasive Privacy Measures}\\
+In contrast to other existing platforms that must necessarily operate based on user data directly to display their functionality, our platform allows users’ personal data to remain secure. Through solutions like the Zero Knowledge Proofs and homomorphic encryption one can transact anonymously without revealing the mystery of their reading habits or preferences. Overall, this innovation shields users’ privacy while at the same time improving the general transaction process since compliance with barriers involving collection of data deters many people.\\
+
+\textbf{Enhanced User Experience and Diversity in Reading Choices}\\
+The platform is aimed at a diverse reading and builds a sense of security for the user when choosing a book. In a situation where the choice of books to read is kept a private matter, the users will be encouraged to read from a wide list of topics without the feeling of any form of exposure. This capability sets our platform apart from other existing solutions, which frequently sacrifice user anonymity in return for relevant suggestions.\\
+
+\textbf{User-Friendly Interface and Accessibility}\\
+This was also one of the main changes and advancements of our platform: the focus on usability. For the platform to be easily navigable and interactive, this is our goal. Functions like individualized reading suggestions will be integrated as ideas which may violate customers’ privacy, but they will aim to find a balance between functionality and protection. It aims at creating a simple user interface that would be appropriate for every class of users without compromising on privacy.\\
+
+\textbf{Cost-Effective Privacy Solutions}\\
+Finally, by offering a platform without all the costly encryption and security hires usually necessary for e-commerce systems, our platform is more cost efficient. The cryptographic techniques that we propose minimize data storage and processing, therefore providing a viable security solution for the user’s pocket. The above approach is especially advantageous to small-scale users who may otherwise consider other privacy preservation solutions unaffordable.
+
+
+
+
+\pagebreak
+\section{\tb{Methodology}}
+The methodology section outlines the systematic approach used in the development of the privacy-preserving eBook sale platform. This revolves around several key phases, namely analysis, design, implementation, and testing. Each phase necessitates a meticulous and iterative process to maintain usability and functionality of the platform while ensuring the desired privacy standards.
+\subsection{Functional and non-functional requirements}
+\begin{itemize}
+	\item \textbf{User registration}
+	Privacy-preserving scenario is implemented, even in registration process. The platform allows users to create accounts with personal information as little as possible, ensuring that unnecessary data is not collected. Only essential information required to create accounts will be collected. Additional information namely email, and phone number will be collected if explicitly necessary for specific purposes.
+	\item \textbf{Book search}
+A robust search functionality is also available for users to look for books by titles, authors, or any relevant keywords. Being designed to avoid identifying users, the search process will not track user queries and remain complete anonymous. No search activities will be linked to individual accounts. The search algorithm ensures to provide accurate results in a quick manner so that users can easily find the content they are searching without compromising their privacy.
+	\item \textbf{Security measures}
+All user data are handled with the utmost care to guarantee both privacy and security. When a user makes a purchase, the transaction is securely processed using oblivious transfer protocol so that the merchant has no knowledge of which book the user has selected. Additionally, personal information is also encrypted when stored in database, employing advanced encryption algorithms to prevent unauthorised access and be protected against leak of sensitive information during potential data breaches.
+	
+	\item \textbf{Oblivious transfer protocol}
+The privacy-preserving technique used for the platform is an oblivious transfer protocol ~\cite{noauthor}. When a user selects a book from the available options, a unique public and private key pair will be generated for all the books in the system. These key pairs are then securely transmitted to the merchant. The merchant encrypts the books using the public key. Once encrypted, all the books are sent back to the user, who can then decrypt the selected book with the private key, ensuring exclusive access to its content. This enhances the privacy of the user, as the encryption ensures that only the intended user can unlock the content of the book. By encrypting the books, the system guarantees that even if others obtain the files, they remain inaccessible without the corresponding private key. This process not only protects the user’s privacy but also adds an additional layer of protection to the digital content ~\cite{noauthor}. This approach not only protects the user's privacy but also provides an additional layer of security for the book content.
+	\item \textbf{Usability}
+	The platform is easily accessible due to its user-friendly and intuitive interface at the core. The simple and easy-to-use design makes navigation is straightforward, purchase is effortless, and other features are seamless. It is developed in a way that users do not require any technical knowledge to interact with the platform. The usability of the platform prioritizes ease of use, ensuring that the platform remains efficient and welcoming for everyone.
+	\item \textbf{Responsiveness}
+	Because of the responsive design, images, layout and contents are automatically adjusted to address changing screen sizes and orientations. This makes navigation and usability are consistent and efficient for a wide range of devices, from mobile phones to desktop computers. 
+	\item \textbf{Legal compliance}
+	Compliance of rules and regulations is part of the core values of the platform. Relevant data protection frameworks such as The Privacy Act 1988  in Australia and The General Data Protection Regulation in the Europe are strictly adhered. This grants users with rights like the ability to correct or delete information, protection against unlawful purposes, access to personal data, irresponsible processing and more. Moreover, the platform operates within other legal requirements including consumer protection laws and copyright laws.
+	
+	\item \textbf{Privacy}
+	Incorporate privacy considerations into the architecture of the platform from the outset. This platform will keep reading habits private and in turn, make them inaccessible to other people. As a result, data collection will be minimal, and transactions will be anonymous to protect users’ identities. Privacy is a core value instead of an afterthought, prioritizing confidentiality of user data. Besides, targeted advertising is impossible when user data is kept confidential. Users are free from personalized advertisements based on their information.
+	 
+\end{itemize}
+
+\subsection{Technical requirements}
+The software requirements specify the necessary operating systems, libraries, frameworks, and dependencies, while the hardware requirements define the minimum and recommended physical components needed for the system to function properly. Ensuring that the software and hardware meet or exceed these requirements guarantees the system will operate efficiently without issues, minimizing the risk of potential issues or limitations during operation.\\\\
+\begin{itemize}
+	\item \textbf{Hardware Requirement}  \\\\
+	\textbf{Processor(CPU)}\\
+		Minimum : Intel Core i3 or equivalent\\
+		Recommended : Intel Core i5 or higher\\\\
+	\textbf{RAM}\\
+		Minimum : 4 GB\\
+		Recommended : 8 GB or more\\\\
+	\textbf{Network}\\
+		Stable internet connection for installing packages, dependencies, and accessing cloud-based services.\\\\\\
+	
+	\item \textbf{Software Requirement}\\\\
+		\textbf{Operating System}\\
+		Windows 10/11\\\\
+		\textbf{Python}\\
+			Version 3.7 or higher\\\\
+     	\textbf{Framework}\\
+		Flask 2.0 or higher \\
+		Bootstrap 4.6.2\\
+		jQuery 3.6.0\\
+	\\\\
+	\textbf{Database}\\
+	MySQL\\
+	Database management tools like phpMyAdmin for database administration\\\\
+	\textbf{Web Browser}\\
+		Google Chrome, Firefox, or any other web browsers \\\\
+	\textbf{IDE/Text Editor}\\
+	PyCharm, Sublime Text, or any code editor with Python and Flask support \\\\
+	\textbf{Required libraries }\\
+	flask\\
+	pycryptodome \\
+	flask mysqldb \\\\	
+
+	   
+\end{itemize}
+\subsection{System Analysis}
+\textbf{User Requirements for understanding user needs}\\
+To build a platform that effectively addresses the needs of our users, it is essential to gain a deep understanding of their preferences and expectations regarding privacy ~\cite{Han2011}. The process involves engaging potential users through use cases, interviews, and surveys to gather insights into their concerns about data protection, user privacy, and the overall user experience ~\cite{Han2011}. Additionally, we will conduct thorough research on which cryptographic scenarios that can preserve privacy of our users so that the platform can improve user confidence while performing seamless book purchases.\\\\
+\textbf{Technical requirements for system development}\\
+To effectively create and operate our privacy-preserving platform, we must implement advanced cryptographic techniques to safeguard user data and restrict access to purchased content to authorized users only. The platform should also include a user-friendly interface built with ongoing web technologies, enabling seamless browsing, purchasing, and downloading of books. It is essential for the platform to be responsive, ensuring an optimal user experience across diverse devices and screen sizes while preserving intuitive usability. Moreover, we will conduct various testing methodologies to assess functionality, security, and performance, ensuring the platform's overall reliability.\\\\
+\textbf{Risk Assessment}\\
+We recognize the potential risks associated with creating and launching a privacy-preserving book sale platform. To mitigate these risks, we will regularly review and update our privacy policies to align with applicable data protection regulations like GDPR and CCPA, ensuring that these policies are communicated transparently to our users. Also, we will actively gather user feedback to continually evaluate the platform's impact on user privacy, allowing us to refine features and address concerns related to data handling and user anonymity. Integrating privacy considerations into the platform's design and architecture, ensuring that privacy features are woven into every aspect of the system. With these strategies, we intent to build a secure and trustworthy environment for our users while effectively solving privacy risks.
+\pagebreak
+\subsection{Flow Diagram}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture11.png"}
+	\caption{Flow Diagram}
+	
+\end{figure}
+Initially, all books in the system are encrypted using AES (Advanced Encryption Standard) along with their AES encryption keys which can be used to decrypt them and securely stored in the database. When browsing the platform, users can add their chosen book to the cart and proceed to payment once they've made their selection.\\\\
+After the payment is successfully completed, the system uses a privacy-preserving mechanism to protect the user's choice. It randomly selects six books from the available books in the system, one of which is the book the user purchased. The system generates a unique pair of public and private keys for each of these six books. The AES encryption keys of the selected books are then encrypted again using RSA (Rivest–Shamir–Adleman) algorithm with their respective public keys, ensuring that only the corresponding private keys can decrypt them.\\\\
+Following the RSA encryption process, the system delivers all six books to the user as part of a bundle. The private key for the book the user originally selected is automatically granted by the system. With this provided key, the user can decrypt to obtain the AES encryption key which allows further encryption for the specific book. In this way users can download the decrypted book securely while other books remain encrypted and inaccessible.\\\\
+The system ensures that neither the merchant nor anyone else can determine as all six books are randomly chosen while only one of them was actually chosen by the user. This approach preserves the privacy of the user's selection, keeping reading habits and preferences concealed.
+\pagebreak
+\subsection{WireFrames}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture1.png"}
+	\caption{ Initial design of login page}
+	\label{fig:image_label1}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture2.png"}
+	\caption{ Initial design of register page}
+	\label{fig:image_label2}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture3.png"}
+	\caption{Figure Initial design of home page}
+	\label{fig:image_label3}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture4.png"}
+	\caption{ Initial design of books page}
+	\label{fig:image_label4}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture5.png"}
+	\caption{Initial design of book details page}
+	\label{fig:image_label5}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture6.png"}
+	\caption{Initial design of shopping cart page}
+	\label{fig:image_label6}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture7.png"}
+	\caption{Initial design of receive order page}
+	\label{fig:image_label7}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture8.png"}
+	\caption{Initial design of about us page}
+	\label{fig:image_label8}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture9.png"}
+	\caption{Initial design of FAQ page}
+	\label{fig:image_label9}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture10.png"}
+	\caption{Initial design of orders page}
+	\label{fig:image_label10}
+\end{figure}
+
+
+
+\pagebreak
+\subsection{UI Design}
+\textbf{Login}\\
+To sign in to the system, existing users must enter their credentials, which consist of a username and password. When the login process is begun, the system first checks whether the provided username exists in the database. If the username is found, the system proceeds to verify the corresponding password. When both credentials are verified to be correct, the user is redirected to the home page of the platform. In cases where the username and password do not match, the system presents appropriate error messages to inform the user of the issue. This process ensures users to experience both secure and user-friendly authentication.\\\\
+
+\textbf{Register}\\
+The purpose of registration process is for new users who do not have an existing account. To create an account, users must provide a username and password for signing in, along with an email address and phone number for additional security and recovery options. If the system detects that the username or email address is already taken, it will present an error message, prompting the user to choose a different username or email.\\\\
+\textbf{Search}\\
+The search feature enables users to look for specific books on the platform. When users enter keywords into the search bar, the system scans the database for matching results and displays them if found. If no matching results are located, the system will simply show no output. For user convenience, the search bar is seamlessly integrated into the navigation bar so that it is easily visible.\\\\
+\textbf{Download}\\
+Users can download their selected book after successfully decrypting it using their private keys. Once the decryption is complete, a download button will appear to  save the book to their devices.\\\\
+\textbf{Responsive}\\
+Implementing a responsive design for the system improve both user experience and overall effectiveness. By ensuring seamless navigation and interaction across devices regardless of their screen sizes, users can enjoy the platform whether they are browsing on smartphones, tablets, or desktops.\\\\
+\textbf{Navigation}\\
+A simple navigation structure minimizes confusion and frustration, enabling users to direct to different sections of the platform with ease. With an organizing navigation bar at the top, users can browse available books, their previous orders, our history and frequently asked questions.
+
+\pagebreak
+\subsection{Frontend}
+The frontend of the platform composed of a series of responsive web pages that offers simple interaction and easy navigation, ensuring users are accessible to features like browsing books, and making secure purchases on various devices. These web pages are designed to offer a smooth and intuitive user experience. 
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{|>{\bfseries}m{3cm}|m{10cm}|}  % Columns with vertical lines
+		\hline
+		\textbf{Page} & \textbf{Description} \\
+		\hline
+		Login         & To sign in by entering user credentials \\
+		\hline
+		Register      & To sign up new users and create an account \\
+		\hline
+		Home          & To display featured books \\
+		\hline
+		Books         & To display a list of all available books for purchase \\
+		\hline
+		Book details  & To show detailed information about a selected book \\
+		\hline
+		Shopping cart & To review order and make payment \\
+		\hline
+		Receive order & To decrypt and download the selected book \\
+		\hline
+		About us      & To provide information about the platform and core values \\
+		\hline
+		FAQ           & To assist users with common inquiries \\
+		\hline
+		Orders        & To view previous orders a user has made \\
+		\hline
+	\end{tabular}
+	\caption{Table of Pages and Descriptions for a Bookstore Platform}
+	\label{tab:pages_descriptions}
+\end{table}
+
+\subsection{Backend}
+The platform is developed using the Flask framework, which allows the creation of various routes designed for different functionalities. These routes support a range of operations, including cryptographic processes that ensure secure data handling, user management for seamless account creation and authentication, downloading option for accessing purchased book, and more.Below is some of the route used in the backend and the functional description of that route:
+
+\begin{itemize}
+	\item / -Home page of the platform
+	\item /login\_user -Authenticates existing users by confirming their credentials
+	\item /register\_user -Enables new users to create an account by providing their credentials
+	\item /book -Displays a list of all available books in the database by rows
+	\item /book\_details -Shows detailed information about a specific book when selected by the user
+	\item /add\_to\_cart -Adds the book details of the selected book to the cart for future payment
+	\item /payment -Makes payment for the selected book
+	\item /receive\_order -Presents the user with a random selection of six books including the one they selected
+	\item /generate\_and\_encrypt -Generates public and private key pairs, encrypts the encryption of AES using the RSA algorithm, and inserts order details into the database
+	\item /decrypt\_chosen\_book -Decrypts the selected book using the user’s private key
+	\item /download\_decrypted\_book -Allows the user to download the decrypted book
+	\item /about\_us -Redirects to the “About Us” page
+	\item /faq -Directs to the “FAQ” page
+	\item /view\_orders -Directs to the “Orders” page
+	\item /logout -Clears session and logs the user out of the system
+\end{itemize}
+
+\subsection{Libraries}
+\begin{itemize}
+	\item \textbf{Flask framework } \\
+	Flask serves as the core framework for the platform due to its lightweight and flexible nature. This framework follows the WSGI (Web Server Gateway Interface) standard while maintaining simplicity and minimal boilerplate code. Flask’s modular architecture makes integration of various extensions simple, enabling to implement features such as user authentication and database management efficiently.
+	\begin{table}[htbp]
+		\centering
+		\begin{tabular}{|>{\bfseries}m{5cm}|m{7cm}|}  % Adjust column widths as needed
+			\hline
+			\textbf{Methodology} & \textbf{Description} \\
+			\hline
+			render\_template & Renders HTML templates with any data passed to it through the context \\
+			\hline
+			request          & Retrieves data sent by client to the server using an HTTP request \\
+			\hline
+			redirect         & Redirects users to a different URL \\
+			\hline
+			url\_for         & Creates a URL for a specific endpoint \\
+			\hline
+			flash            & Sends messages to the users such as success messages \\
+			\hline
+			send\_file       & Sends a file from the server to the client during an HTTP response \\
+			\hline
+			session          & Stores data for user for a specific session \\
+			\hline
+			after\_this\_request & Sets up a function to run following the current request \\
+			\hline
+		\end{tabular}
+		\caption{Methodologies and their Descriptions}
+		\label{tab:methodologies}
+	\end{table}
+\item \textbf{PyCryptodome} \\
+For secure data handling, PyCryptodome, a robust library that provides low-level cryptographic primitives, is incorporated ~\cite{Asana2021}. As a result, the system can implement encryption and decryption protocols using algorithms like AES and RSA, which ensures the protection of sensitive information like book contents and encryption keys throughout its operations.
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{|>{\bfseries}m{5cm}|m{7cm}|}  % Adjust column widths as needed
+		\hline
+		\textbf{Methodology} & \textbf{Description} \\
+		\hline
+		AES  & Performs symmetric encryption and decryption in the AES cipher class \\
+		\hline
+		RSA  & Allows encryption and decryption with RSA cryptography \\
+		\hline
+		PKCS1\_OAEP  & Uses together with RSA for secure encryption \\
+		\hline
+	\end{tabular}
+	\caption{Encryption Methodologies and their Descriptions}
+	\label{tab:encryption_methods}
+\end{table}
+\pagebreak
+\item \textbf{Bootstrap}\\
+Bootstrap, a popular front-end framework, was employed to create a responsive and visually appealing front-end design for my platform. This framework provided a wide range of CSS and JavaScript components, allowing to build a user-friendly interface such as forms, buttons, navigation bar and grids. In this way, the platform is not only appealing  but also functional, improving the overall user experience.
+\item \textbf{MySQL}\\
+As the relational database management system for my platform, MySQL was used to store and manage user data and application contents. Because of its reliability and performance, MySQL made it an excellent choice for managing data for the system. Additionally, data retrieval and manipulation were efficient due to its support for SQL. phpMyAdmin was used to administer MySQL database.
+\end{itemize}
+
+
+\pagebreak
+\subsection{Web page}
+
+\begin{figure}[H]  % The [H] option ensures the figure stays exactly here
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture12.png"}
+	\caption{Home page}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture13.png"}
+	\caption{Login page}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture14.png"}
+	\caption{Register page}
+	
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture15.png"}
+	\caption{About us page}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture16.png"}
+	\caption{FAQ page}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture17.png"}
+	\caption{Orders page}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture18.png"}
+	\caption{Books page}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture19.png"}
+	\caption{Book details page}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture20.png"}
+	\caption{Shopping cart page}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture21.png"}
+	\caption{Receive order page}
+	
+\end{figure}
+
+\subsection{System Demonstration}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture23.png"}
+	\caption{Login error validation}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture24.png"}
+	\caption{Login error validation}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture23.png"}
+	\caption{Login error validation}
+	
+\end{figure}
+When a user enters incorrect credentials during login, the system will display respective error messages. Additionally, if the user attempts to sign in without providing any input in the fields, error validation will be triggered.
+
+\subsection{Registration error validation}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture25.png"}
+	\caption{Registration error validation}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture26.png"}
+	\caption{Registration error validation}
+	
+\end{figure}
+If the inputs of a user are not valid format, the system will display appropriate error messages to inform the issue, such as an invalid email or invalid phone number. Like login process, registration without any inputs will also trigger error validation.
+
+\subsection{Registration process}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture27.png"}
+	\caption{Registration process}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture28.png"}
+	\caption{Registration process}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture29.png"}
+	\caption{Registration process}
+	
+\end{figure}
+When a user enters necessary inputs in correct format, the registration process will be successful and create a new user account. A new user, Ana, is registered and the username can be seen because of the successful registration process in the above example.
+\subsection{Search function}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture30.png"}
+	\caption{Search Function}
+
+\end{figure}
+	The search bar looks for the keywords entered in the input field and delivers the results.
+
+\subsection{Responsiveness}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture31.png"}
+	\caption{Platform responsiveness}
+	
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture32.png"}
+	\caption{Platform responsiveness}
+	
+\end{figure}
+The platform is designed to be responsive across different devices regardless of the screen sizes.
+
+\subsection{Cryptographic process}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture33.png"}
+	\caption{Order details and payment}
+	
+\end{figure}
+All books in the system are encrypted using AES along with a unique encryption key for each book. Once a book is selected and payment has been made, the system generates public and private key pairs using the RSA algorithm. Then, it encrypts the encryption keys of six books that are randomly chosen including the selected book using the generated public keys and sends them to the user.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture34.png"}
+	\caption{Receive private key to decrypt}
+	
+\end{figure}
+The system automatically delivers the user with the private key for the selected book for decryption process.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture35.png"}
+	\caption{Choose the selected book to decrypt}
+	
+\end{figure}
+The user must identify and choose the selected book among random six books sent by the system to decrypt it using the provided private key.  
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture36.png"}
+	\caption{Decryption process}
+	
+\end{figure}
+When the user chooses the selected book, a textarea to enter the private key and a button to intiate the decryption process will appear. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture37.png"}
+	\caption{Download process}
+	
+\end{figure}
+After the decryption has done, the selected book will be prepared for download.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture38.png"}
+	\caption{Download process}
+	
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture39.png"}
+	\caption{Decryption failure}
+	
+\end{figure}
+If the private key is incorrect or the user chooses a book other than the selected book, the decryption process will fail.
+
+\subsection{Code Review}
+During the development of the platform, both static and dynamic code reviews were conducted to deliver the highest level of functionality, robustness, and security. The static code review is all about thorough examination of the source code which could reveal issues namely, coding standard deviations, logical inconsistencies and security vulnerabilities at the early stage of the development ~\cite{Eijs2024}. With the help of static code review, the code quality was improved, and risks were minimized. \\\\
+Another approach used to review code was dynamic code reviews. It involves reviewing the source code by executing the system in an environment to observe how it behaves ~\cite{Gillis2024}. Dynamic code review helped resolve runtime errors that only arise during system execution. By testing the system under numerous possible conditions, the development was able to identify and solve issues, ensuring  reliability and security for users. These combined review processes  played a significant role in delivering a well-optimized and reliable product the users.
+
+
+
+\section{Project Plan and Timeline}
+\textbf{Overview:}\\
+The project titled Privacy-Preserving Online Ebook Sale Platform will be executed over a period spanning from March 2024 to October 12, 2024. The plan is organized into several key stages—research, design, implementation, and testing—each with distinct deliverables. The primary objective is to develop a platform that prioritizes user privacy through the application of advanced cryptographic techniques, ensuring secure transactions and an ad-free environment.\\\\
+\textbf{Phases of the Project:}
+\begin{longtable}{|>{\bfseries}m{5cm}|m{10cm}|}
+	\hline
+	\textbf{Phase} & \textbf{Description} \\
+	\hline
+	Planning and Research (March - April 2024) & 
+	\begin{itemize}
+		\item Conduct an in-depth review of existing platforms and privacy-preserving mechanisms.
+		\item Identify core requirements based on privacy concerns, focusing on data encryption methods like zero-knowledge proofs and secure multiparty computation.
+		\item Finalize the tools and technologies (Django, Bootstrap, Python) that will be used throughout the project.
+		\item \textbf{Milestone:} Detailed definition of project objectives and finalization of the technical stack.
+	\end{itemize}
+	\\
+	\hline
+	System Architecture Design (May - June 2024) & 
+	\begin{itemize}
+		\item Design the overall system architecture, focusing on database structure, privacy-preserving cryptographic methods, and UI/UX wireframes.
+		\item Develop wireframe mockups to outline key features such as secure browsing, purchasing, and privacy-compliant user interfaces.
+		\item Develop protocols using advanced cryptographic methods such as oblivious transfer to ensure private transactions.
+		\item \textbf{Milestone:} Completion of architectural and privacy-preserving protocol design.
+	\end{itemize}
+	\\
+	\hline
+	Development Phase (July - August 2024) & 
+	\begin{itemize}
+		\item Build the front-end using Bootstrap for responsive design and Django for backend functionality.
+		\item Implement essential security protocols for privacy protection, including user authentication and encrypted data storage.
+		\item Integrate backend logic with database encryption, ensuring data protection throughout.
+		\item \textbf{Milestone:} Fully developed front-end and initial back-end functionality with privacy protocols in place.
+	\end{itemize}
+	\\
+	\hline
+	Testing and Optimization (September 2024) & 
+	\begin{itemize}
+		\item Perform rigorous unit tests to validate that the platform’s components (transaction security, user interface, and data protection mechanisms) function as intended.
+		\item Conduct usability testing to verify the platform’s user experience.
+		\item Run performance testing to assess encryption overhead and platform responsiveness under load.
+		\item Address any detected vulnerabilities during security testing to ensure maximum privacy protection.
+		\item \textbf{Milestone:} Comprehensive testing and performance optimization of the platform.
+	\end{itemize}
+	\\
+	\hline
+	Final Adjustments (October 2024) & 
+	\begin{itemize}
+		\item Resolve any remaining issues identified during testing and finalize the platform for public use.
+		\item Prepare documentation outlining system architecture, cryptographic protocols, and user privacy features.
+		\item \textbf{Milestone:} Completion of the privacy-preserving ebook platform by October 12, 2024.
+	\end{itemize}
+	\\
+	\hline
+	\caption{Phases of the Project}
+\end{longtable}
+
+
+
+\pagebreak
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture41.jpg"}
+	\caption{Gantt for overall project work }
+	
+\end{figure}
+\pagebreak
+\section{\tb{Challenges and Solutions}}
+
+As the digital world evolves, there are increasing privacy issues as online commerce grows. The requirement to balance privacy and functionality offers particular issues when operating an ebook sales business. A privacy-preserving online ebook sales platform intends to allow users to buy books without disclosing sensitive information such as the titles they choose, transaction data, or browsing history. This requires overcoming several cryptography, usability, and technological challenges.\\
+This paper describes the key obstacles faced when creating such a system and suggests several solutions. Furthermore, we address areas where additional work is required to improve the platform's privacy assurances, efficiency, and scalability.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"C:/Users/sandy/OneDrive/Desktop/uni_work/capstone project/Picture40.png"}
+	\caption{Online Book system }
+	
+\end{figure}
+\begin{itemize}
+
+	
+	\item \textbf{Price Discrepancy Revealing Information}\\\\
+	\textbf{Challenge:}Different books generally have different costs, which might unintentionally reveal information. For example, the server might determine which book was purchased based on the amount paid by the user. This threatens privacy since the server may readily determine which ebook was selected.
+	\\\\
+	\textbf{Solution:} To address this issue, the present project assumes that all books are priced the same. However, this method is unworkable in real-world situations when books are priced differently.
+	A more adaptable alternative is to employ homomorphic encryption, which enables the server to handle encrypted pricing without decrypting them. This allows the user to encrypt the price of the book while the server performs the transaction without knowing the exact amount. Additionally, Oblivious Transfer (OT) Protocols might be used, in which the server sends books to the user without knowing which book was selected.
+	~\cite{Boneh2005} \\\\
+	
+	
+	
+	\item \textbf{High Communication Costs}
+	\\\\
+	\textbf{Challenges:}Privacy-preserving techniques, particularly ones using encryption, can raise communication costs. As cryptographic procedures such as encryption and decryption need additional data transfer, communication overhead becomes a substantial barrier.\\\\
+	\textbf{Solutions:}One solution is to employ Elliptic Curve Cryptography (ECC) rather than regular RSA encryption. ECC provides the same degree of security but uses lower key sizes, decreasing the quantity of data delivered. Furthermore, asynchronous communication technologies can lessen the demand for real-time engagement, hence increasing overall system efficiency. 
+	Another possible method is to investigate blockchain technology. Blockchain can decentralise transactions and decrease the need for a central server, possibly cutting transmission costs by dispersing processing over a network of nodes.~\cite{Bernstein2005}
+	\\\\
+	
+	\item \textbf{Security in a Restricted Model}\\\\
+	\textbf{Challenges:}The present project makes various simplifying assumptions, such as the homogeneity of ebook pricing and the premise that users cannot change their public key generation code. While these assumptions make development easier, they restrict the platform's suitability for real-world circumstances.
+	\\\\
+	\textbf{Solutions:}The security model may be expanded by including Multi-Party Computation (MPC), which allows several users to calculate functions over their inputs while keeping them private. This guarantees that sensitive information, such as a user's book selection, is kept private even in more open settings. 
+	
+	Furthermore, differential privacy approaches might be used to ensure that individual data is unrecognisable from aggregated data. This method can help safeguard user data even if some aggregate information is compromised. ~\cite{Cramer2001}\\\\
+	
+	\item \textbf{Metadata Leakage}\\\\
+	\textbf{Challenges:}Even if cryptographic mechanisms safeguard the transaction's content, metadata such as purchase time, transaction size, and frequency of user requests can still be leaked. For example, if a user purchases a book shortly after its publication, the server may associate the time with the new book's availability.\\\\
+	\textbf{Solutions:}To prevent metadata leaks, mock transactions can be implemented. Sending phoney requests alongside genuine transactions makes it difficult for the server to discern the user's true request. Another technique is to employ mix networks, which shuffle user requests and obscure the connection between the user and their chosen book. While both systems add complexity, they provide an effective defence against metadata leaks.~\cite{Chaum1981}\\\\
+	
+	\item \textbf{Side-Channel Attacks}\\\\
+	\textbf{Challenge:}Even if the cryptographic protocols themselves are safe, side-channel attacks use information from the system's implementation, such as timing data or power usage, to extract sensitive information.\\\\
+	\textbf{Solution:}Constant-time algorithms can assist minimise timing attacks by guaranteeing that the time required to execute a cryptographic operation is not affected by the data being processed. Furthermore, noise injection techniques can bring unpredictability into system behaviour, making it more difficult for attackers to discover potential exploits. Trusted Execution Environments (TEEs) can separate important cryptographic activities from the rest of the system, further safeguarding against side-channel attacks.~\cite{Percival2005}\\\\
+	
+	\item \textbf{Scalability and Performance Bottlenecks}\\\\
+	\textbf{Challenge:}As the number of users and transactions increases, cryptographic processes become computationally costly, causing performance bottlenecks. Ensuring scalability while maintaining privacy and security is a significant task.\\\\
+	\textbf{Solution:}To increase scalability, efficient cryptographic methods such as Elliptic Curve Cryptography (ECC) should be used. ECC enables quicker calculation using fewer keys, lowering communication and computation costs. 
+	Batch processing improves scalability by allowing the server to aggregate and process several cryptographic operations simultaneously. Asynchronous communication and cloud-based systems can disperse workloads across numerous servers, dynamically altering resources based on demand, preventing performance bottlenecks.
+	\\\\
+   \item \textbf{Data Integrity and Verifiability}\\\\
+   \textbf{Challenge:}Users of a privacy-preserving ebook platform must believe that the data they get from the server is accurate and unaltered. A malicious server may modify the content or provide false replies, jeopardising the system's integrity.
+   \\\\
+   \textbf{Solution:}Digital signatures maintain data integrity by allowing users to confirm that the data delivered by the server has not been changed. Merkle trees may also be used to offer cryptographic verification that data in big databases (like ebooks) has not been tampered with. Finally, Zero-Knowledge Proofs (ZKPs) may validate the validity of server operations without exposing the underlying data, giving users confidence in the system's accuracy and security.\\\\
+   
+   \item \textbf{User Experience and Efficiency}\\\\
+   \textbf{Challenges:}Privacy-preserving systems often introduce additional complexity, which can degrade the user experience. Ensuring a seamless and efficient experience is critical for user adoption.\\\\
+   \textbf{Solution:}An optimistic approach can streamline transactions by focusing on essential cryptographic checks during standard operations. This method allows for a quicker and more efficient user experience, as the system can process routine transactions with minimal overhead. However, for high-risk or suspicious transactions, the system would escalate to more robust security protocols, thereby ensuring that adequate security measures are in place when needed. This approach strikes a balance between usability and security, reducing the burden on most users while maintaining system integrity and protecting against potential threats.\\\\
+   Progressive disclosure is another effective strategy. This method enables the system to dynamically adjust privacy and security levels based on the transaction's value or the user's behavior. For instance, users making low-value purchases could benefit from faster processing and less intrusive security measures, while high-value transactions would automatically trigger stronger protections. This targeted application of privacy measures enhances the overall user experience by optimizing performance without compromising security.\\\\
+   Lastly, user education plays a crucial role in improving the platform's effectiveness and usability. Providing clear explanations, tutorials, and resources can help users understand the importance of privacy-preserving features. By empowering users with knowledge about how these features work and their benefits, they are more likely to engage with the platform confidently and responsibly.
+\end{itemize}
+\pagebreak
+
+\section{Result and Discussion}
+The privacy preserving book sale platform offers users with the capability to purchase
+books without revealing the contents of books. Therefore, it will keep these habits private and offer numerous benefits to the users such as encouraging different reading materials to explore and avoiding targeted advertising. \\
+
+By combining cryptographic techniques, such as AES for encrypting book content and RSA for encrypting AES encryption keys, the system effectively protects privacy of the users’ reading habits and preferences. The process of generating public and private key pairs for six random books to encrypt again and delivering them to the system and back to the user guarantees that the merchant has zero knowledge on which book the user purchased. The reason behind delivering six random books instead of all books is to maintain system performance as generating key pairs for each book in the database can be time-consuming. Nevertheless, the architecture allows users to maintain control over their purchased book without exposing their choices to the merchant, promoting a sense of security.\\
+
+A key concern is that  the merchant may still deduce which book has been purchased by examining order histories in the database since such records contain the price of the book the user has purchased. Despite the book content remains encrypted, the possibility of order histories being visible may compromise user anonymity to a certain extent. However, a solution to this problem is to standardize the same pricing for each book in the system. A uniform  price for every book would become much harder for the merchant to deduce which book has been purchased. For that reason, the system is developed in such a way to preserve privacy of the users.\\
+
+While the platform’s privacy-preserving features improves user privacy and builds trust between merchant and user, it is important  to acknowledge and address any existing weaknesses. Continuous evaluations will be performed on a regular basic to maintain system’s performance and effectiveness are optimal.
+\pagebreak
+
+\section{Conclusion}
+The Privacy-Preserving Online E-Book Sale Platform is one of the most recent developments in the privacy-preserving sale systems of e-books. That is why the project uses modern cryptographic approaches including AES encryption algorithm, RSA cryptosystem and secure multiparty computation that help the platform protect users’ personal data and reading history. By doing so, it does not allow certain negative scenarios like unauthorized data access, profiling and constant use of targeted ads which are characteristic for old e-books platforms. \\
+
+As one of the platform successes, it is possible to identify the effective and secure user experience offered by this platform while preserving the user’s privacy. It allows customers to search for e-books, click to purchase and download with the confidence that the information they are inputting is not being watched, recorded or sold. This not only strengthens the trust between the platform and its users, but also helps to expand the range of exposure to different materials, all people can learn more, without worrying that someone will violate their rights to privacy. \\
+
+That said, like with any other solutions, the platform also comes with its drawbacks – the matters of scalability and performance, in particular. The use of these cryptographic algorithms increases the computation involved, making it slow for the system in terms of response time and general efficiency. However, the problems highlighted above can be solved through further improvement of the solution with further potential modifications which should not undermine the privacy provision aspect of the platform. \\
+
+In conclusion the proposed solution, the Privacy-Preserving Online E-Book Sale Platform, is novel to meet the privacy challenges of the current generations. To that end, it presents a new paradigm of online e-book selling as a secure, ad-free, and privacy-conscious marketplace. Since more people seek anonymity and discretion in the age of the internet, this project is sure to find its audience in readers who want their privacy preserved but are eager to read online. 
+
+ \pagebreak
+
+ \bibliographystyle{plain}
+ \bibliography{C:/Users/sandy/OneDrive/Desktop/uni_work/Reference.bib}
+
+
+
+
+
+\end{document}
